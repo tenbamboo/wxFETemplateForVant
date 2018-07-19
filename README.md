@@ -1,4 +1,4 @@
-# test1
+# wxFETemplateForVant
 
 > A Vue.js project
 
