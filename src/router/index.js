@@ -1,20 +1,38 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Cain from '@cain/'
+// import Cain from '@cain/'
 Vue.use(Router)
 
 const routes = [
   {
     path: '/',
-    redirect: '/demo'
+    redirect: '/index'
   },
   {
-    path: '/demo',
-    component: resolve => require(['@/components/demo/Index'], resolve),
+    path: '/index',
+    component: resolve => require(['@/components/Index'], resolve),
     name: '主页',
     meta: {
-      // isShowBar: true,
-      // keepAlive: true
+      isShowBar: true,
+      keepAlive: true
+    }
+  },
+  {
+    path: '/news',
+    component: resolve => require(['@/components/news/Index'], resolve),
+    name: '患教课堂',
+    meta: {
+      isShowBar: true,
+      keepAlive: true
+    }
+  },
+  {
+    path: '/my',
+    component: resolve => require(['@/components/my/Index'], resolve),
+    name: '我的',
+    meta: {
+      isShowBar: true,
+      keepAlive: true
     }
   },
   {
@@ -114,18 +132,18 @@ const router = new Router({
 router.beforeEach(async (to, from, next) => {
   // await this.$role.validateNoAudit('searchItem')
 
-  if (to.meta.code) {
-    let pages = Cain.getParam('noRulePages')
-    if (!Cain.isBlank(pages)) {
-      pages = pages.split(',')
-      for (let item of pages) {
-        if (item === to.meta.code) {
-          router.push('/login')
-          return false
-        }
-      }
-    }
-  }
+  // if (to.meta.code) {
+  //   let pages = Cain.getParam('noRulePages')
+  //   if (!Cain.isBlank(pages)) {
+  //     pages = pages.split(',')
+  //     for (let item of pages) {
+  //       if (item === to.meta.code) {
+  //         router.push('/login')
+  //         return false
+  //       }
+  //     }
+  //   }
+  // }
   next()
 })
 router.afterEach((to, from) => {

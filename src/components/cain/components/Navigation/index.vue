@@ -6,10 +6,10 @@
         <div class="navigationItem" v-for="(item,index) in proxyPrarm" :key="index" :class="{selected : selected == item.key}" @click="navigation(item.key)">
           <!-- <mt-badge type="error" size="small" v-if="index === 2 && unReadIMCount > 0">{{unReadIMCount | redPointFilter}}</mt-badge>
           <mt-badge type="error" size="small" v-if="index === 3 && unReadMyCount > 0">{{unReadMyCount | redPointFilter}}</mt-badge> -->
-          <div class="imgWrap">
-            <img v-show="selected !== item.key" :src="`static/image/${item.key}.png`">
-            <img v-show="selected === item.key" :src="`static/image/${item.key}S.png`">
-          </div>
+          <!-- <div class="imgWrap"> -->
+          <img v-show="selected !== item.key" :src="`static/image/cain/${item.key}.png`">
+          <img v-show="selected === item.key" :src="`static/image/cain/${item.key}S.png`">
+          <!-- </div> -->
           <p>{{item.text}}</p>
         </div>
       </div>
@@ -91,32 +91,39 @@ export default {
     z-index: 1;
     display: flex;
     text-align: center;
+    border: 1px solid #e3e3e3;
     .navigationItem {
-      background-color: #181818;
+      background-color: #ffffff;
       flex: 1;
       padding: 5px 0;
+      // padding-bottom:5px;
       position: relative;
       &.selected p {
         color: $mainColor;
       }
-      .imgWrap {
-        width: pxToRem(45px);
-        height: pxToRem(45px);
-        margin: 0 auto 5px;
-        img {
-          width: 100%;
-          height: 100%;
-        }
+      // .imgWrap {
+      //   // width: 30px;
+      //   // height: 30px;
+      //   margin: 0 auto 5px;
+      img {
+        // width: 100%;
+        // height: 100%;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        vertical-align: middle;
+            margin-bottom: 8px;
+        // }
       }
       p {
-        font-size: $fs24;
-        color: #fff;
+        font-size: $fs12;
+        color: #666666;
       }
-      .mint-badge {
-        position: absolute;
-        top: 3px;
-        right: pxToRem(25px);
-      }
+      // .mint-badge {
+      //   position: absolute;
+      //   top: 3px;
+      //   right: 25px;
+      // }
     }
   }
 }

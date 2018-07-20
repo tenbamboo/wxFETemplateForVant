@@ -1,28 +1,63 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div >
+
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <keep-alive v-if="$route.meta.keepAlive">
+      <router-view></router-view>
+    </keep-alive>
+
+    <cain-navigation :param="navParam"></cain-navigation>
+
   </div>
 </template>
 
 <script>
-
+// import Cain from '@cain/'
+import CainNavigation from '@cain/components/Navigation/'
+// import Vue from 'vue'
 export default {
-  // components: {
-  //   [Button.name]: Button,
-  //   [Icon.name]: Icon
+  data () {
+    return {
+      navParam: [
+        { key: 'index', text: '首页' },
+        { key: 'news', text: '患教课堂' },
+        { key: 'my', text: '我的' }
+      ]
+    }
+  },
+  created () {
+  },
+  mounted () {
+    // this.initWatchJkx()
+    // this.hideOverlay()
+  },
+  methods: {
+    initWatchJkx () {
+      // Object.defineProperties(jkx, {
+      //   openid: {
+      //     get () {
 
-  // },
-  name: 'App'
+      //     },
+      //     set (newValue) {
+      //       this.hideOverlay()
+      //     }
+      //   }
+      // })
+    },
+    hideOverlay () {
+      let overlay = document.getElementById('rootOverlay')
+      overlay.classList.add('hiddenReady')
+      setTimeout(() => {
+        overlay.remove()
+      }, 1000)
+    }
+  },
+  components: {
+    CainNavigation
+  }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style  scoped   lang="scss">
+
 </style>
